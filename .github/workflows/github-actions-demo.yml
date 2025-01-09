@@ -23,7 +23,7 @@ jobs:
       - name: Build Go binary
         run: |
           # Build your Go application binary (adjust output name if needed)
-          go build -o myapp
+          go build -o main ./cmd/main.go
 
       - name: Docker login
         uses: docker/login-action@v2
