@@ -1,7 +1,7 @@
-// handlers/formHandler.go
 package handlers
 
 import (
+	"embed"
 	"fmt"
 	"html/template"
 	"math"
@@ -14,8 +14,9 @@ import (
 
 const fixedMesoAmount = 100000000.0
 
-// If you’re not passing in a global “tmpl” or “template set,”
-// you’ll parse the template file(s) here or pass a pre-parsed template.
+//go:embed templates/*
+var templatesFS embed.FS
+
 func FormHandler(w http.ResponseWriter, r *http.Request) {
 	data := models.NXConversionTemplate{}
 
@@ -64,7 +65,8 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func renderTemplate(w http.ResponseWriter, data models.NXConversionTemplate) {
-	tmpl, err := template.ParseFiles("templates/form.gohtml")
+	// Use ParseFS with the embedded file system and the path to the template.
+	tmpl, err := template.ParseFS(templatesFS, "templates/form.gohtml")
 	if err != nil {
 		http.Error(w, "Error parsing template.", http.StatusInternalServerError)
 		return
