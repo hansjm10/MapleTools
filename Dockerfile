@@ -4,8 +4,8 @@ FROM golang:1.20-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy go.mod and go.sum first (for better caching)
-COPY go.mod go.sum ./
+# Copy go.mod (for better caching)
+COPY go.mod ./
 RUN go mod download
 
 # Now copy the rest of the application source code
