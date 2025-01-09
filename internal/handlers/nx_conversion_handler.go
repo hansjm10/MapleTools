@@ -64,7 +64,7 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func renderTemplate(w http.ResponseWriter, data models.NXConversionTemplate) {
-	tmpl, err := template.ParseFiles("templates/form.html")
+	tmpl, err := template.ParseFiles("templates/form.gohtml")
 	if err != nil {
 		http.Error(w, "Error parsing template.", http.StatusInternalServerError)
 		return
