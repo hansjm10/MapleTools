@@ -3,7 +3,8 @@ name: Go Build and Docker Deploy
 on:
   push:
     branches:
-      - main    # Adjust branch as needed
+      - github-actions-integration    # Adjust branch as needed
+      - main
   workflow_dispatch:
 
 jobs:
