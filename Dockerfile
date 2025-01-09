@@ -5,8 +5,8 @@ FROM golang:1.20-alpine AS builder
 WORKDIR /app
 
 # Copy go.mod (for better caching)
-COPY go.mod ./
-RUN go mod download
+# COPY go.mod ./
+# RUN go mod download
 
 # Now copy the rest of the application source code
 COPY . .
